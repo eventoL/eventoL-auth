@@ -1,0 +1,33 @@
+{
+  "name": "eventol-auth",
+  "version": "1.0.0",
+  "description": "Social authentication for api server",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "auth",
+    "token",
+    "jwt",
+    "social",
+    "api"
+  ],
+  "author": "eventol",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "lodash.mergewith": "^4.6.0",
+    "mongoose": "^4.5.9",
+    "passport": "^0.3.2",
+    "passport-github-token": "^2.1.0",
+    "passport-google-plus-token": "^2.1.0",
+    "passport-jwt": "^2.1.0",
+    "passport-token-facebook": "^1.0.6",
+    "passport-twitter-token": "^1.1.1"
+  }
+}
