@@ -15,5 +15,11 @@ module.exports = {
         host: process.env.EVENTOL_AUTH_SERVER_HOST,
         port: process.env.EVENTOL_AUTH_SERVER_PORT
     },
-    modelsPath: process.env.EVENTOL_AUTH_USER_MODEL_PATH || './models'
+    modelsPath: process.env.EVENTOL_AUTH_USER_MODEL_PATH || './models',
+    models: {
+        mongo: {
+            host: process.env.EVENTOL_AUTH_MONGO_HOST,
+            port: process.env.EVENTOL_AUTH_MONGO_PORT
+        }
+    }
 };
