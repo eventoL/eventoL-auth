@@ -1,4 +1,7 @@
-node_modules/
 .esformatter
 .eslintrc
 .tern-project
+README.md
+.env
+config.js
+./index.js
