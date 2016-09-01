@@ -1,15 +1,14 @@
 'use strict';
 
 const express = require('express');
-const config = require('./lib/config');
+const config = require('./config');
 const authRouter = require('./lib/routes');
 const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const router = authRouter(config);
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use('/', authRouter);
+app.use('/', router);
 
 app.listen(config.server.port, config.server.host, (error) => {
     if (error) {
