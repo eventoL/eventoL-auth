@@ -1,8 +1,8 @@
 {
-  "name": "eventol-auth",
+  "name": "eventoL-auth",
   "version": "1.0.0",
   "description": "Social authentication for api server",
-  "main": "index.js",
+  "main": "lib/routes.js",
   "scripts": {
     "test": "grunt test"
   },
