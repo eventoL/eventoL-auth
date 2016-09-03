@@ -1,6 +1,12 @@
-[![Stories in Ready](https://badge.waffle.io/eventoL/eventoL-auth.png?label=ready&title=Ready)](https://waffle.io/eventoL/eventoL-auth)
 # eventoL-auth
 Authenticate and link oauth2 profiles.
+
+<!-- ### Status -->
+### Issues
+[![Stories in in progress](https://badge.waffle.io/eventoL/eventoL-auth.svg?label=in progress&title=In Progress)](http://waffle.io/eventoL/eventoL-auth)
+[![Stories in Ready](https://badge.waffle.io/eventoL/eventoL-auth.svg?label=ready&title=Ready)](http://waffle.io/eventoL/eventoL-auth)
+[![Stories in Bug](https://badge.waffle.io/eventoL/eventoL-auth.svg?label=bug&title=Bug)](http://waffle.io/eventoL/eventoL-auth)
+[![Stories in Enhancement](https://badge.waffle.io/eventoL/eventoL-auth.svg?label=enhancement&title=Enhancement)](http://waffle.io/eventoL/eventoL-auth)
 
 ## Configuration
 
