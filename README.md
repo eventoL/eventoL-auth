@@ -62,3 +62,14 @@ For example:
     }
 }
 ```
+
+## Exported routes
+
+### **POST** /auth/*provider*/token
+
+Being provider one of: facebook, google, github or twitter. For facebook, google and github (ouath2 providers) the route expects
+the access_token parameter in the query string with the access token received from the provider. For example:
+
+```
+POST http://localhost:5000/auth/google/token?access_token=blaAccessTokenBle
+```
