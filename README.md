@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/eventoL/eventoL-auth.png?label=ready&title=Ready)](https://waffle.io/eventoL/eventoL-auth)
 # eventoL-auth
 Authenticate and link oauth2 profiles.
 
