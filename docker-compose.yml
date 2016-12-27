@@ -1,0 +1,53 @@
+version: '2'
+services:
+  kong:
+    image: kong
+    restart: always
+    environment:
+      - KONG_DATABASE=cassandra
+      - KONG_CASSANDRA_CONTACT_POINTS=kong-database
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "7946:7946"
+      - "7946:7946/udp"
+    depends_on:
+      - kong-database
+  kong-database:
+    restart: always
+    image: cassandra:2.2
+  kong-dashboard:
+    restart: always
+    image: pgbi/kong-dashboard
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kong
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - EVENTOL_AUTH_SERVER_PORT=3000
+      - EVENTOL_AUTH_SERVER_HOST=0.0.0.0
+      - EVENTOL_AUTH_LOGGER_INFO_PATH='./info.log'
+      - EVENTOL_AUTH_LOGGER_INFO_LEVEL='info'
+      - EVENTOL_AUTH_LOGGER_FILE_MAX_SIZE=1000000
+      - EVENTOL_AUTH_LOGGER_MAX_FILES=50
+      - EVENTOL_AUTH_LOGGER_ERROR_PATH='./error.log'
+      - EVENTOL_AUTH_LOGGER_ERROR_LEVEL='error'
+      - EVENTOL_AUTH_IS_BEHIND_PROXY=false
+      - EVENTOL_AUTH_MONGODB_HOST=mongo
+      - EVENTOL_AUTH_MONGODB_PORT=27017
+      - EVENTOL_AUTH_MONGODB_DB=default
+      - EVENTOL_AUTH_KONG_URL=http://kong:8001 
+      - NODE_ENV=develop
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
