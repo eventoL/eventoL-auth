@@ -1,0 +1,4 @@
+site_name: eventol-auth
+pages:
+- Inicio: index.md
+theme: readthedocs
