@@ -2,13 +2,10 @@
 #
 # Currently install exo-docker
 
-FROM node:latest
+FROM node:6.9-alpine
 MAINTAINER Agustin Croce
 
-RUN apt-get update -y \
- && apt-get install -y git libsodium-dev\
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apk add --update git make g++ libtool autoconf automake python && rm -rf /tmp/* /var/cache/apk/*
 
 RUN npm config set registry http://registry.npmjs.org \
  && npm cache clean
