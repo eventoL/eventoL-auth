@@ -12,11 +12,11 @@ RUN npm config set registry http://registry.npmjs.org \
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-RUN touch .env
 
 COPY package.json /usr/src/app/
 RUN npm install --unsafe-perm\
  && npm cache clean
 COPY . /usr/src/app
+RUN rm -rf .env && touch .env
 
 CMD [ "npm", "start" ]
