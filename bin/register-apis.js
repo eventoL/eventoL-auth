@@ -20,7 +20,7 @@ request(
         body:   {
             upstream_url:       'http://api:3000',
             name:               'users',
-            request_path:       '/api/users',
+            request_path:       '/api/signup',
             strip_request_path: false
         },
         json: true

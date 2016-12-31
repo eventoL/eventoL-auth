@@ -12,10 +12,7 @@
   "scripts": {
     "test": "grunt mochaTest",
     "jenkins": "grunt test",
-    "kong-register-api": "node ./bin/register-api",
-    "kong-register-consumer": "node ./bin/register-consumer",
-    "sign-jwt": "node ./bin/sign-jwt",
-    "watch": "grunt watch",
+    "kong-register-api": "node ./bin/register-apis",
     "edit-domain-swagger": "open-swagger-editor -s ./swagger/user.yaml",
     "start": "grunt build && node app.js",
     "generate-domain-swagger": "grunt convert",
