@@ -44,7 +44,11 @@ services:
       - EVENTOL_AUTH_MONGODB_HOST=mongo
       - EVENTOL_AUTH_MONGODB_PORT=27017
       - EVENTOL_AUTH_MONGODB_DB=default
-      - EVENTOL_AUTH_KONG_URL=http://kong:8001 
+      - EVENTOL_AUTH_KONG_URL=http://kong:8001
+      - EVENTOL_AUTH_JWT_SECRET=secretito
+      - EVENTOL_AUTH_ADMIN_USERNAME=admin
+      - EVENTOL_AUTH_ADMIN_PASSWORD=admin
+      - EVENTOL_AUTH_ADMIN_EMAIL=admin@exo.com.ar
       - NODE_ENV=develop
   mongo:
     image: mongo
