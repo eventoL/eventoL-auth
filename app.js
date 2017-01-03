@@ -10,7 +10,7 @@ const helmet         = require('helmet');
 const logger         = require('./lib/logger');
 const expressWinston = require('express-winston');
 const swaggerTools   = require('swagger-tools');
-
+const passport       = require('passport');
 if (process.env.EVENTOL_AUTH_IS_BEHIND_PROXY) {
     // http://expressjs.com/api.html#trust.proxy.options.table
     app.enable('trust proxy');
@@ -35,6 +35,9 @@ app.use(expressWinston.logger({
     meta:            false,
     statusLevels:    true
 }));
+
+//Added passport
+app.use(passport.initialize());
 
 //Baucis configuration
 const mongoose = require('mongoose');
