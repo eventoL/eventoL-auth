@@ -57,6 +57,8 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
 
     app.use('/api', baucisInstance);
 
+    app.use(middleware.swaggerValidator());
+
     app.use(middleware.swaggerRouter({
         controllers:           './lib/routes',
         ignoreMissingHandlers: true,
