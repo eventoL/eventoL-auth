@@ -19,12 +19,30 @@ consumes:
 produces:
   - application/json
 paths:
+  /signup:
+    x-swagger-router-controller: signup
+    post:
+      operationId: signUp
+      parameters:
+          - name: user
+            in: body
+            description: The properties of the user
+            required: true
+            schema:
+              $ref: '#/definitions/UserProperties'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/JwtResponse'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /login:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: user
+    x-swagger-router-controller: login
     post:
       description: Returns 'Hello' to the caller
-      # used as the method name of the controller
       operationId: logIn
       parameters:
         - name: credentials
@@ -37,26 +55,31 @@ paths:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
+            $ref: '#/definitions/JwtResponse'
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-# complex objects have schema definitions
 definitions:
+  UserProperties:
+      properties:
+        username:
+          type: string
+        password:
+          type: string
   Credentials:
       properties:
         username:
           type: string
         password:
           type: string
-  HelloWorldResponse:
+        email:
+          type: string
+  JwtResponse:
     required:
-      - message
+      - jwt
     properties:
-      message:
+      jwt:
         type: string
   ErrorResponse:
     required:

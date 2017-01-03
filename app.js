@@ -40,6 +40,7 @@ app.use(expressWinston.logger({
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://' + process.env.EVENTOL_AUTH_MONGODB_HOST + ':' + process.env.EVENTOL_AUTH_MONGODB_PORT + '/' + process.env.EVENTOL_AUTH_MONGODB_DB);
 mongoose.Promise = global.Promise;
+
 const buildBaucis    = require('./build-baucis');
 const baucisInstance = buildBaucis();
 
@@ -49,20 +50,20 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
     // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
     app.use(middleware.swaggerMetadata());
 
-    // Validate Swagger requests
-    app.use(middleware.swaggerValidator());
-
     //Enables Swagger Ui on /docs
     app.use(middleware.swaggerUi());
 
     // Route validated requests to appropriate controller
+
+    app.use('/api', baucisInstance);
+
+    app.use(middleware.swaggerValidator());
+
     app.use(middleware.swaggerRouter({
         controllers:           './lib/routes',
         ignoreMissingHandlers: true,
         useStubs:              false // Conditionally turn on stubs (mock mode)
     }));
-
-    app.use('/api', baucisInstance);
 
     app.use(expressWinston.errorLogger({
         winstonInstance: logger

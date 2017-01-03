@@ -44,7 +44,9 @@ services:
       - EVENTOL_AUTH_MONGODB_HOST=mongo
       - EVENTOL_AUTH_MONGODB_PORT=27017
       - EVENTOL_AUTH_MONGODB_DB=default
-      - EVENTOL_AUTH_KONG_URL=http://kong:8001 
+      - EVENTOL_AUTH_KONG_URL=http://kong:8001
+      - EVENTOL_AUTH_JWT_EXPIRES_IN=4h
+      - EVENTOL_AUTH_JWT_NOT_BEFORE=1s
       - NODE_ENV=develop
   mongo:
     image: mongo
