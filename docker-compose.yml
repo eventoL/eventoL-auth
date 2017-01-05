@@ -47,7 +47,9 @@ services:
       - EVENTOL_AUTH_KONG_URL=http://kong:8001
       - EVENTOL_AUTH_JWT_EXPIRES_IN=4h
       - EVENTOL_AUTH_JWT_NOT_BEFORE=1s
-      - NODE_ENV=develop
+      - EVENTOL_AUTH_SESSION_SECRET=secretin
+      - EVENTOL_AUTH_API_HOST=http://auth.eventol.sh:8000
+      - NODE_ENV=development
   mongo:
     image: mongo
     restart: always

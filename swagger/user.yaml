@@ -59,19 +59,23 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /app/{id}/{provider}/login:
+  /app/{clientId}/{provider}/login:
     x-swagger-router-controller: social-login
     get:
       operationId: socialLogin
       parameters:
-        - name: id
+        - name: clientId
           in: path
-          description: The id of the app
+          description: The clientId of the app
           required: true
           type: string
         - name: provider
           in: path
           description: The social provider
+          required: true
+          type: string
+        - name: redirectUrl
+          in: query
           required: true
           type: string
       responses:
@@ -80,14 +84,14 @@ paths:
             headers:
               Location:
                 type: "string"
-  /app/{id}/{provider}/callback:
+  /app/{clientId}/{provider}/callback:
     x-swagger-router-controller: social-login
     get:
       operationId: callback
       parameters:
-        - name: id
+        - name: clientId
           in: path
-          description: The id of the app
+          description: The clientId of the app
           required: true
           type: string
         - name: provider
@@ -102,13 +106,13 @@ paths:
             Location:
               type: "string"
 definitions:
-  UserProperties:
+  Credentials:
       properties:
         username:
           type: string
         password:
           type: string
-  Credentials:
+  UserProperties:
       properties:
         username:
           type: string

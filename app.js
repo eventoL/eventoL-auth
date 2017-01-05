@@ -39,6 +39,20 @@ app.use(expressWinston.logger({
 //Added passport
 app.use(passport.initialize());
 
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
+app.use(require('express-session')({
+    secret: process.env.EVENTOL_AUTH_SESSION_SECRET
+}));
+
+app.use(passport.session());
+
 //Baucis configuration
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://' + process.env.EVENTOL_AUTH_MONGODB_HOST + ':' + process.env.EVENTOL_AUTH_MONGODB_PORT + '/' + process.env.EVENTOL_AUTH_MONGODB_DB);
