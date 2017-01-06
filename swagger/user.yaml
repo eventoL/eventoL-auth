@@ -59,12 +59,54 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /app/{clientId}/{provider}/login:
+  /link/appusers/{userId}:
+    x-swagger-router-controller: social-login
+    post:
+      operationId: linkProfile
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the app user
+          required: true
+          type: string
+        - name: identity
+          in: body
+          description: The identity to link
+          required: true
+          schema:
+            $ref: '#/definitions/Identity'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/JwtResponse'
+  /unlink/appusers/{userId}:
+    x-swagger-router-controller: social-login
+    post:
+      operationId: unlink
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the app user
+          required: true
+          type: string
+        - name: identity
+          in: body
+          description: The identity to link
+          required: true
+          schema:
+            $ref: '#/definitions/Identity'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/JwtResponse'
+  /app/{appId}/{provider}/login:
     x-swagger-router-controller: social-login
     get:
       operationId: socialLogin
       parameters:
-        - name: clientId
+        - name: appId
           in: path
           description: The clientId of the app
           required: true
@@ -84,12 +126,12 @@ paths:
             headers:
               Location:
                 type: "string"
-  /app/{clientId}/{provider}/callback:
+  /app/{appId}/{provider}/callback:
     x-swagger-router-controller: social-login
     get:
       operationId: callback
       parameters:
-        - name: clientId
+        - name: appId
           in: path
           description: The clientId of the app
           required: true
@@ -131,4 +173,12 @@ definitions:
       - message
     properties:
       message:
+        type: string
+  Identity:
+    properties:
+      provider:
+        type: string
+      connection:
+        type: string
+      jwt:
         type: string
