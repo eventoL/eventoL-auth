@@ -71,7 +71,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /link/appusers/{userId}:
-    x-swagger-router-controller: account-linking
+    x-swagger-router-controller: link-account
     post:
       tags:
         - Account-linking
@@ -94,7 +94,7 @@ paths:
           schema:
             $ref: '#/definitions/JwtResponse'
   /unlink/appusers/{userId}:
-    x-swagger-router-controller: account-linking
+    x-swagger-router-controller: link-account
     post:
       tags:
         - Account-linking
