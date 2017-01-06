@@ -42,7 +42,6 @@ paths:
   /login:
     x-swagger-router-controller: login
     post:
-      description: Returns 'Hello' to the caller
       operationId: logIn
       parameters:
         - name: credentials
@@ -60,14 +59,60 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /app/{clientId}/{provider}/login:
+    x-swagger-router-controller: social-login
+    get:
+      operationId: socialLogin
+      parameters:
+        - name: clientId
+          in: path
+          description: The clientId of the app
+          required: true
+          type: string
+        - name: provider
+          in: path
+          description: The social provider
+          required: true
+          type: string
+        - name: redirectUrl
+          in: query
+          required: true
+          type: string
+      responses:
+          302:
+            description: "302 response"
+            headers:
+              Location:
+                type: "string"
+  /app/{clientId}/{provider}/callback:
+    x-swagger-router-controller: social-login
+    get:
+      operationId: callback
+      parameters:
+        - name: clientId
+          in: path
+          description: The clientId of the app
+          required: true
+          type: string
+        - name: provider
+          in: path
+          description: The social provider
+          required: true
+          type: string
+      responses:
+        302:
+          description: "302 response"
+          headers:
+            Location:
+              type: "string"
 definitions:
-  UserProperties:
+  Credentials:
       properties:
         username:
           type: string
         password:
           type: string
-  Credentials:
+  UserProperties:
       properties:
         username:
           type: string
