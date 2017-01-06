@@ -18,10 +18,19 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+tags:
+  - name: Social-login
+    description: Authenticates users and issues JWTs
+  - name: Account-linking
+    description: Links/unlinks identities to an account
+  - name: User-authentication
+    description: Register and login service's user
 paths:
   /signup:
     x-swagger-router-controller: signup
     post:
+      tags:
+        - User-authentication
       operationId: signUp
       parameters:
           - name: user
@@ -42,6 +51,8 @@ paths:
   /login:
     x-swagger-router-controller: login
     post:
+      tags:
+        - User-authentication
       operationId: logIn
       parameters:
         - name: credentials
@@ -59,12 +70,60 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /app/{clientId}/{provider}/login:
+  /link/appusers/{userId}:
+    x-swagger-router-controller: link-account
+    post:
+      tags:
+        - Account-linking
+      operationId: linkProfile
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the app user
+          required: true
+          type: string
+        - name: identity
+          in: body
+          description: The identity to link
+          required: true
+          schema:
+            $ref: '#/definitions/Identity'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/JwtResponse'
+  /unlink/appusers/{userId}:
+    x-swagger-router-controller: link-account
+    post:
+      tags:
+        - Account-linking
+      operationId: unlink
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the app user
+          required: true
+          type: string
+        - name: identity
+          in: body
+          description: The identity to link
+          required: true
+          schema:
+            $ref: '#/definitions/Identity'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/JwtResponse'
+  /app/{appId}/{provider}/login:
     x-swagger-router-controller: social-login
     get:
+      tags:
+        - Social-login
       operationId: socialLogin
       parameters:
-        - name: clientId
+        - name: appId
           in: path
           description: The clientId of the app
           required: true
@@ -84,12 +143,14 @@ paths:
             headers:
               Location:
                 type: "string"
-  /app/{clientId}/{provider}/callback:
+  /app/{appId}/{provider}/callback:
     x-swagger-router-controller: social-login
     get:
+      tags:
+        - Social-login
       operationId: callback
       parameters:
-        - name: clientId
+        - name: appId
           in: path
           description: The clientId of the app
           required: true
@@ -131,4 +192,12 @@ definitions:
       - message
     properties:
       message:
+        type: string
+  Identity:
+    properties:
+      provider:
+        type: string
+      connection:
+        type: string
+      jwt:
         type: string
