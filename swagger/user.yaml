@@ -18,10 +18,19 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+tags:
+  - name: Social-login
+    description: Authenticates users and issues JWTs
+  - name: Account-linking
+    description: Links/unlinks identities to an account
+  - name: User-authentication
+    description: Register and login service's user
 paths:
   /signup:
     x-swagger-router-controller: signup
     post:
+      tags:
+        - User-authentication
       operationId: signUp
       parameters:
           - name: user
@@ -42,6 +51,8 @@ paths:
   /login:
     x-swagger-router-controller: login
     post:
+      tags:
+        - User-authentication
       operationId: logIn
       parameters:
         - name: credentials
@@ -60,8 +71,10 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /link/appusers/{userId}:
-    x-swagger-router-controller: social-login
+    x-swagger-router-controller: account-linking
     post:
+      tags:
+        - Account-linking
       operationId: linkProfile
       parameters:
         - name: userId
@@ -81,8 +94,10 @@ paths:
           schema:
             $ref: '#/definitions/JwtResponse'
   /unlink/appusers/{userId}:
-    x-swagger-router-controller: social-login
+    x-swagger-router-controller: account-linking
     post:
+      tags:
+        - Account-linking
       operationId: unlink
       parameters:
         - name: userId
@@ -104,6 +119,8 @@ paths:
   /app/{appId}/{provider}/login:
     x-swagger-router-controller: social-login
     get:
+      tags:
+        - Social-login
       operationId: socialLogin
       parameters:
         - name: appId
@@ -129,6 +146,8 @@ paths:
   /app/{appId}/{provider}/callback:
     x-swagger-router-controller: social-login
     get:
+      tags:
+        - Social-login
       operationId: callback
       parameters:
         - name: appId
