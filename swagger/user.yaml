@@ -19,7 +19,7 @@ consumes:
 produces:
   - application/json
 tags:
-  - name: Social-login
+  - name: Oauth-login
     description: Authenticates users and issues JWTs
   - name: Account-linking
     description: Links/unlinks identities to an account
@@ -117,11 +117,11 @@ paths:
           schema:
             $ref: '#/definitions/JwtResponse'
   /app/{appId}/{provider}/login:
-    x-swagger-router-controller: social-login
+    x-swagger-router-controller: oauth-login
     get:
       tags:
-        - Social-login
-      operationId: socialLogin
+        - Oauth-login
+      operationId: oauthLogin
       parameters:
         - name: appId
           in: path
@@ -144,10 +144,10 @@ paths:
               Location:
                 type: "string"
   /app/{appId}/{provider}/callback:
-    x-swagger-router-controller: social-login
+    x-swagger-router-controller: oauth-login
     get:
       tags:
-        - Social-login
+        - Oauth-login
       operationId: callback
       parameters:
         - name: appId
