@@ -143,12 +143,39 @@ paths:
             headers:
               Location:
                 type: "string"
+  /app/{appId}/{connection}/link:
+    x-swagger-router-controller: oauth-login
+    get:
+      tags:
+        - Oauth-login
+      operationId: linkUserLogin
+      parameters:
+        - name: appId
+          in: path
+          description: The clientId of the app
+          required: true
+          type: string
+        - name: connection
+          in: path
+          description: The social connection
+          required: true
+          type: string
+        - name: redirectUrl
+          in: query
+          required: true
+          type: string
+      responses:
+          302:
+            description: "302 response"
+            headers:
+              Location:
+                type: "string"
   /app/{appId}/{provider}/callback:
     x-swagger-router-controller: oauth-login
     get:
       tags:
         - Oauth-login
-      operationId: callback
+      operationId: oauthCallback
       parameters:
         - name: appId
           in: path
@@ -158,6 +185,29 @@ paths:
         - name: provider
           in: path
           description: The social provider
+          required: true
+          type: string
+      responses:
+        302:
+          description: "302 response"
+          headers:
+            Location:
+              type: "string"
+  /app/{appId}/{connection}/link/callback:
+    x-swagger-router-controller: oauth-login
+    get:
+      tags:
+        - Oauth-login
+      operationId: linkCallback
+      parameters:
+        - name: appId
+          in: path
+          description: The clientId of the app
+          required: true
+          type: string
+        - name: connection
+          in: path
+          description: The social connection
           required: true
           type: string
       responses:
