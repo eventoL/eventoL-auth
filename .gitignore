@@ -9,3 +9,6 @@ bower_components/
 *.project
 *.xml
 .coverage
+swagger/baucis.json
+swagger/swagger.json
+swagger/user.json
