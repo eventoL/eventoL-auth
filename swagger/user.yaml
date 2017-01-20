@@ -116,7 +116,7 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/JwtResponse'
-  /app/{appId}/{provider}/login:
+  /apps/{appId}/{provider}/login:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -143,7 +143,7 @@ paths:
             headers:
               Location:
                 type: "string"
-  /app/{appId}/{connection}/link:
+  /apps/{appId}/{connection}/link:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -170,7 +170,7 @@ paths:
             headers:
               Location:
                 type: "string"
-  /app/{appId}/{provider}/callback:
+  /apps/{appId}/{provider}/callback:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -193,7 +193,7 @@ paths:
           headers:
             Location:
               type: "string"
-  /app/{appId}/{connection}/link/callback:
+  /apps/{appId}/{connection}/link/callback:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -216,6 +216,25 @@ paths:
           headers:
             Location:
               type: "string"
+  /apps/{appId}/appusers:
+    x-swagger-router-controller: appusers-list
+    get:
+      tags:
+        - AppUser
+      operationId: listAppUsers
+      parameters:
+        - name: appId
+          in: path
+          description: The clientId of the app
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AppUser'
 definitions:
   Credentials:
       properties:
