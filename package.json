@@ -30,6 +30,7 @@
     "express-winston": "^2.0.0",
     "helmet": "^2.3.0",
     "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "mongoose": "^4.6.2",
     "passport": "^0.3.2",

@@ -116,7 +116,7 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/JwtResponse'
-  /apps/{appId}/{provider}/login:
+  /app/{appId}/{provider}/login:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -143,7 +143,7 @@ paths:
             headers:
               Location:
                 type: "string"
-  /apps/{appId}/{connection}/link:
+  /app/{appId}/{connection}/link:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -170,7 +170,7 @@ paths:
             headers:
               Location:
                 type: "string"
-  /apps/{appId}/{provider}/callback:
+  /app/{appId}/{provider}/callback:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -193,7 +193,7 @@ paths:
           headers:
             Location:
               type: "string"
-  /apps/{appId}/{connection}/link/callback:
+  /app/{appId}/{connection}/link/callback:
     x-swagger-router-controller: oauth-login
     get:
       tags:
@@ -216,7 +216,7 @@ paths:
           headers:
             Location:
               type: "string"
-  /apps/{appId}/appusers:
+  /app/{appId}/appusers:
     x-swagger-router-controller: appusers-list
     get:
       tags:
