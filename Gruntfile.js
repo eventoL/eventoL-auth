@@ -15,6 +15,39 @@ module.exports = function(grunt) {
 
             }
         },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter:          'spec',
+                    quiet:             false,
+                    clearRequireCache: false
+                },
+                src: ['./tests/**/*.js']
+            }
+        },
+        plato: {
+            ci: {
+                options: {
+                    eslintrc: './.eslintrc'
+                },
+                files: {
+                    'results/plato': ['lib/**/*.js']
+                }
+            }
+        },
+        mocha_istanbul: {
+            src:     'tests/**/*.js',
+            options: {
+                coverage:        true,
+                excludes:        ['node_modules/**', 'tests/**', 'results/**', 'app.js'],
+                istanbulOptions: ['--include-all-sources=true'],
+                root:            './lib',
+                coverageFolder:  'results/istanbul',
+                reporter:        'mochawesome',
+                reportFormats:   ['cobertura', 'lcovonly', 'html'],
+                quiet:           false
+            }
+        },
         'baucis-swagger2': {
             main: {
                 src:  './lib/models',
